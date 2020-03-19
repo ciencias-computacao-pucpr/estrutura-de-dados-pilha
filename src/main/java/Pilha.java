@@ -1,15 +1,17 @@
+import java.util.Optional;
+
 public class Pilha<T> {
-    private Object[] elementos;
-    private int tamanho;
+    private T[] elementos;
     private int topo = -1;
 
     public Pilha(int tamanho) {
-        this.elementos = new Object[tamanho];
-        this.tamanho = tamanho;
+        this.elementos = (T[]) new Object[tamanho];
     }
 
     public T topo() {
-        return (T) elementos[topo];
+        if (topo < 0 || topo >= elementos.length)
+            return null;
+        return elementos[topo];
     }
 
     public boolean vazia() {
@@ -17,19 +19,19 @@ public class Pilha<T> {
     }
 
     public boolean cheia() {
-        return topo == tamanho-1;
+        return topo == elementos.length - 1;
     }
 
     public void empilha(T elemento) {
         if (cheia()) throw new PilhaCheiaException();
 
-        elementos[++topo] = (T)elemento;
+        elementos[++topo] = elemento;
     }
 
     public T desempilha() {
         if (vazia()) throw new PilhaVaziaException();
 
-        return (T) elementos[topo--];
+        return elementos[topo--];
     }
 
     public static class PilhaVaziaException extends RuntimeException {
