@@ -28,6 +28,8 @@ public class Validador {
             }
 
             if (c ==')' || c == ']' || c == '}') {
+                if (pilha.vazia()) return false;
+
                 String valor = pilha.desempilha();
                 if (valor.equals("(") && c != ')') return false;
                 if (valor.equals("[") && c != ']') return false;

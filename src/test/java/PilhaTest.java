@@ -14,6 +14,13 @@ class PilhaTest {
     }
 
     @Test
+    void chamandoTopoParaUmaPilhaVaziaNaoDeveDarErro() {
+        Pilha<String> pilha = new Pilha<>(1);
+
+        Assertions.assertDoesNotThrow(pilha::topo);
+    }
+
+    @Test
     void empilhando2NumeroEleDesempilhaDoUltimoParaOPrimeiro() {
         Pilha<String> pilha = new Pilha<>(2);
 

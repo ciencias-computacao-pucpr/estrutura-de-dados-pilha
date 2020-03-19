@@ -33,4 +33,11 @@ class ValidadorTest {
     void dadoStringComDiferenteTiposDeParentesesSobrandoMasEmOrdemInlalidaValidaFalse() {
         assertFalse(new Validador("({1 + 2)}").isValido());
     }
+
+    @Test
+    void dadoStringQueFechaNumeroPareDeVezesMasDeveraSerInvalido() {
+        Validador validador = new Validador("2))");
+        assertDoesNotThrow(validador::isValido);
+        assertFalse(validador.isValido());
+    }
 }
