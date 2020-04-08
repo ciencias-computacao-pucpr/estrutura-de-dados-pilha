@@ -1,3 +1,5 @@
+package fila;
+
 public class FilaMerger<T extends Comparable<T>> {
     private Fila<T> fila1;
     private Fila<T> fila2;
