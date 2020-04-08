@@ -1,3 +1,5 @@
+import lista.ListaEncadeada;
+import lista.Node;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -54,7 +56,7 @@ public class ListaEncadeadaTest {
         lista.insereUltimo(10);
         lista.insereUltimo(21);
 
-        ListaEncadeada.Node<Integer> valor0 = lista.valorEm(0);
+        Node<Integer> valor0 = lista.valorEm(0);
 
         lista.insereDepois(valor0, 30);
 

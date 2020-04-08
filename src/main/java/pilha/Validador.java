@@ -1,3 +1,5 @@
+package pilha;
+
 public class Validador {
     private final String expressao;
     private Pilha<String> pilha;

@@ -1,10 +1,14 @@
-public class ListaEncadeada<T extends Comparable<T>> {
+package lista;
+
+public class ListaEncadeadaCircular<T extends Comparable<T>> implements Lista<T> {
     private Node<T> primeiro = null;
 
+    @Override
     public boolean vazia() {
         return primeiro == null;
     }
 
+    @Override
     public void inserePrimeiro(T info) {
         Node<T> valor = new Node<>(info);
         if (primeiro != null) {
@@ -13,6 +17,7 @@ public class ListaEncadeada<T extends Comparable<T>> {
         primeiro = valor;
     }
 
+    @Override
     public void insereDepois(Node<T> node, T info) {
         Node<T> valor = new Node<>(info);
         if (node.prox != null) {
@@ -22,6 +27,7 @@ public class ListaEncadeada<T extends Comparable<T>> {
         node.prox = valor;
     }
 
+    @Override
     public void insereUltimo(T info) {
         Node<T> ultimo = primeiro;
         Node<T> valor = new Node<>(info);
@@ -39,6 +45,7 @@ public class ListaEncadeada<T extends Comparable<T>> {
     }
 
 
+    @Override
     public void insereOrdenado(T info) {
         Node<T> valor = new Node<>(info);
 
@@ -63,6 +70,7 @@ public class ListaEncadeada<T extends Comparable<T>> {
             aComparar = aComparar.prox;
         }
     }
+    @Override
     public String imprime() {
         StringBuilder builder = new StringBuilder();
         Node<T> n = primeiro;
@@ -78,6 +86,7 @@ public class ListaEncadeada<T extends Comparable<T>> {
         return builder.toString();
     }
 
+    @Override
     public Node<T> valorEm(int pos) {
         int idx = 0;
 
@@ -91,16 +100,4 @@ public class ListaEncadeada<T extends Comparable<T>> {
         return n;
     }
 
-    public static class Node <T> {
-        private final T info;
-        private Node<T> prox;
-
-        public Node(T info) {
-            this.info = info;
-        }
-
-        public T getInfo() {
-            return info;
-        }
-    }
 }
