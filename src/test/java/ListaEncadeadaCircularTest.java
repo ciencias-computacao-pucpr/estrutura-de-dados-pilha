@@ -1,18 +1,19 @@
+import lista.Lista;
 import lista.ListaEncadeada;
+import lista.ListaEncadeadaCircular;
 import lista.Node;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ListaEncadeadaTest {
-    ListaEncadeada<Integer> lista = null;
+public class ListaEncadeadaCircularTest {
+
+    private Lista<Integer> lista;
 
     @BeforeEach
     public void setup() {
-        lista = new ListaEncadeada<>();
+        lista = new ListaEncadeadaCircular<>();
     }
-
 
     @Test
     public void vaziaEmUmaListaVazia() {
@@ -71,6 +72,7 @@ public class ListaEncadeadaTest {
     public void adicionarUltimoEmListaPopulada() {
         lista.insereUltimo(10);
         lista.insereUltimo(21);
+
         lista.insereUltimo(30);
 
         Assertions.assertEquals("10, 21, 30",lista.imprime());
@@ -112,48 +114,6 @@ public class ListaEncadeadaTest {
 
         lista.insereOrdenado(40);
         Assertions.assertEquals("1, 10, 15, 21, 40",lista.imprime());
-    }
-
-    @Test
-    public void insereSomenteUsandoOrdenado() {
-        lista.insereOrdenado(45);
-        lista.insereOrdenado(12);
-        lista.insereOrdenado(100);
-        lista.insereOrdenado(-2);
-        lista.insereOrdenado(7);
-        lista.insereOrdenado(99);
-        lista.insereOrdenado(2000);
-        lista.insereOrdenado(12);
-
-        Assertions.assertEquals("-2, 7, 12, 12, 45, 99, 100, 2000", lista.imprime());
-    }
-
-    @Test
-    public void removerPrimeiroDeUmaListaVazia() {
-        Assertions.assertNull(lista.removePrimeiro());
-    }
-
-    @Test
-    public void removerPrimeiroDeUmaListaPopulada() {
-        lista.insereOrdenado(45);
-        lista.insereOrdenado(12);
-        lista.insereOrdenado(100);
-        Assertions.assertEquals(12, lista.removePrimeiro().getInfo());
-        Assertions.assertEquals("45, 100", lista.imprime());
-    }
-
-    @Test
-    public void removerUltimoDeUmaListaVazia() {
-        Assertions.assertNull(lista.removeUltimo());
-    }
-
-    @Test
-    public void removerUltimoDeUmaListaPopulada() {
-        lista.insereOrdenado(45);
-        lista.insereOrdenado(12);
-        lista.insereOrdenado(100);
-        Assertions.assertEquals(100, lista.removeUltimo().getInfo());
-        Assertions.assertEquals("12, 45", lista.imprime());
     }
 
 }

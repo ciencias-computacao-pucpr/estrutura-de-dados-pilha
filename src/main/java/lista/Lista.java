@@ -14,4 +14,10 @@ public interface Lista<T extends Comparable<T>> {
     String imprime();
 
     Node<T> valorEm(int pos);
+
+    Node<T> removePrimeiro();
+
+    Node<T> removeUltimo();
+
+    Node<T> remove(Node<T> node);
 }

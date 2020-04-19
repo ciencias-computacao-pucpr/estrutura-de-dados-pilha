@@ -1,6 +1,8 @@
 package lista;
 
-public class ListaEncadeadaCircular<T extends Comparable<T>> implements Lista<T> {
+import java.util.Iterator;
+
+public class ListaEncadeadaCircular<T extends Comparable<T>> implements Lista<T>, Iterable<T> {
     private Node<T> primeiro = null;
 
     @Override
@@ -10,13 +12,24 @@ public class ListaEncadeadaCircular<T extends Comparable<T>> implements Lista<T>
 
     @Override
     public void inserePrimeiro(T info) {
-        Node<T> valor = new Node<>(info);
+        Node<T> novoPrimeiro = new Node<>(info);
         if (primeiro != null) {
-            valor.prox = primeiro;
+            novoPrimeiro.prox = primeiro;
+            ultimo().prox = novoPrimeiro;
+        } else {
+            novoPrimeiro.prox = novoPrimeiro;
         }
-        primeiro = valor;
+        primeiro = novoPrimeiro;
     }
 
+    private Node<T> ultimo() {
+        Node<T> n = primeiro;
+        while (!isUltimo(n)) {
+            n = n.prox;
+        }
+
+        return n;
+    }
     @Override
     public void insereDepois(Node<T> node, T info) {
         Node<T> valor = new Node<>(info);
@@ -29,58 +42,56 @@ public class ListaEncadeadaCircular<T extends Comparable<T>> implements Lista<T>
 
     @Override
     public void insereUltimo(T info) {
-        Node<T> ultimo = primeiro;
-        Node<T> valor = new Node<>(info);
 
-        if (ultimo == null) {
-            primeiro = valor;
+        Node<T> novoUltimo = new Node<>(info);
+
+        if (primeiro == null) {
+            inserePrimeiro(info);
             return;
         }
 
-        while (ultimo.prox != null) {
-            ultimo = ultimo.prox;
-        }
+        Node<T> ultimoAtual = ultimo();
 
-        ultimo.prox = valor;
+        ultimoAtual.prox = novoUltimo;
+        novoUltimo.prox = primeiro;
     }
 
 
     @Override
     public void insereOrdenado(T info) {
-        Node<T> valor = new Node<>(info);
-
         if (primeiro == null) {
-            primeiro = valor;
+            inserePrimeiro(info);
             return;
         }
 
-        Node<T> aComparar = primeiro;
-
-        if (info.compareTo(aComparar.info) <=0) {
-            valor.prox = primeiro;
-            primeiro = valor;
+        if (info.compareTo(primeiro.info) <= 0) {
+            inserePrimeiro(info);
             return;
         }
 
-        while (aComparar != null) {
-            if (info.compareTo(aComparar.info) > 0 && (aComparar.prox == null || info.compareTo(aComparar.prox.info) <=0)) {
-                insereDepois(aComparar, info);
+        for (Node<T> node = primeiro; !isUltimo(node); node = node.prox) {
+            if (info.compareTo(node.info) > 0 && info.compareTo(node.prox.info) <= 0) {
+                insereDepois(node, info);
                 return;
             }
-            aComparar = aComparar.prox;
         }
+
+        insereUltimo(info);
     }
+
+    private boolean isUltimo(Node<T> no) {
+        return no.prox == primeiro;
+    }
+
     @Override
     public String imprime() {
         StringBuilder builder = new StringBuilder();
-        Node<T> n = primeiro;
 
-        while (n != null) {
+        for (T n : this) {
             if (builder.length() > 0)
                 builder.append(", ");
 
-            builder.append(n.info);
-            n = n.prox;
+            builder.append(n);
         }
 
         return builder.toString();
@@ -100,4 +111,42 @@ public class ListaEncadeadaCircular<T extends Comparable<T>> implements Lista<T>
         return n;
     }
 
+    @Override
+    public Node<T> removePrimeiro() {
+        return null;
+    }
+
+    @Override
+    public Node<T> removeUltimo() {
+        return null;
+    }
+
+    @Override
+    public Node<T> remove(Node<T> node) {
+        return null;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+
+            private Node<T> atual = null;
+
+            @Override
+            public boolean hasNext() {
+                return (atual == null && primeiro != null) ||
+                        (atual != null && atual.prox != primeiro);
+            }
+
+            @Override
+            public T next() {
+                if (atual == null) {
+                    atual = primeiro;
+                    return atual.info;
+                }
+                atual = atual.prox;
+                return atual.info;
+            }
+        };
+    }
 }
