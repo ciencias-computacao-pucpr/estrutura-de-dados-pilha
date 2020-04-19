@@ -1,7 +1,6 @@
 import lista.ListaEncadeada;
 import lista.Node;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +31,7 @@ public class ListaEncadeadaTest {
         lista.insereUltimo(10);
         lista.insereUltimo(21);
 
-        Assertions.assertEquals("10, 21",lista.imprime());
+        Assertions.assertEquals("10, 21",lista.toString());
     }
 
     @Test
@@ -58,14 +57,14 @@ public class ListaEncadeadaTest {
 
         lista.insereDepois(valor0, 30);
 
-        Assertions.assertEquals("10, 30, 21",lista.imprime());
+        Assertions.assertEquals("10, 30, 21",lista.toString());
     }
 
     @Test
     public void adicionarUltimoEmListaVazia() {
         lista.insereUltimo(30);
 
-        Assertions.assertEquals("30",lista.imprime());
+        Assertions.assertEquals("30",lista.toString());
     }
     @Test
     public void adicionarUltimoEmListaPopulada() {
@@ -73,14 +72,14 @@ public class ListaEncadeadaTest {
         lista.insereUltimo(21);
         lista.insereUltimo(30);
 
-        Assertions.assertEquals("10, 21, 30",lista.imprime());
+        Assertions.assertEquals("10, 21, 30",lista.toString());
     }
 
     @Test
     public void adicionarPrimeirEmListaVazia() {
         lista.inserePrimeiro(30);
 
-        Assertions.assertEquals("30",lista.imprime());
+        Assertions.assertEquals("30",lista.toString());
     }
     @Test
     public void adicionarPrimeiroEmListaPopulada() {
@@ -89,14 +88,14 @@ public class ListaEncadeadaTest {
 
         lista.inserePrimeiro(30);
 
-        Assertions.assertEquals("30, 10, 21",lista.imprime());
+        Assertions.assertEquals("30, 10, 21",lista.toString());
     }
 
     @Test
     public void adicionarOrdenadoEmListaVazia() {
         lista.insereOrdenado(30);
 
-        Assertions.assertEquals("30",lista.imprime());
+        Assertions.assertEquals("30",lista.toString());
     }
     @Test
     public void adicionarOrdenadoEmListaPopulada() {
@@ -105,13 +104,13 @@ public class ListaEncadeadaTest {
 
         lista.insereOrdenado(15);
 
-        Assertions.assertEquals("10, 15, 21",lista.imprime());
+        Assertions.assertEquals("10, 15, 21",lista.toString());
 
         lista.insereOrdenado(1);
-        Assertions.assertEquals("1, 10, 15, 21",lista.imprime());
+        Assertions.assertEquals("1, 10, 15, 21",lista.toString());
 
         lista.insereOrdenado(40);
-        Assertions.assertEquals("1, 10, 15, 21, 40",lista.imprime());
+        Assertions.assertEquals("1, 10, 15, 21, 40",lista.toString());
     }
 
     @Test
@@ -125,7 +124,7 @@ public class ListaEncadeadaTest {
         lista.insereOrdenado(2000);
         lista.insereOrdenado(12);
 
-        Assertions.assertEquals("-2, 7, 12, 12, 45, 99, 100, 2000", lista.imprime());
+        Assertions.assertEquals("-2, 7, 12, 12, 45, 99, 100, 2000", lista.toString());
     }
 
     @Test
@@ -139,7 +138,7 @@ public class ListaEncadeadaTest {
         lista.insereOrdenado(12);
         lista.insereOrdenado(100);
         Assertions.assertEquals(12, lista.removePrimeiro().getInfo());
-        Assertions.assertEquals("45, 100", lista.imprime());
+        Assertions.assertEquals("45, 100", lista.toString());
     }
 
     @Test
@@ -153,7 +152,7 @@ public class ListaEncadeadaTest {
         lista.insereOrdenado(12);
         lista.insereOrdenado(100);
         Assertions.assertEquals(100, lista.removeUltimo().getInfo());
-        Assertions.assertEquals("12, 45", lista.imprime());
+        Assertions.assertEquals("12, 45", lista.toString());
     }
 
 }

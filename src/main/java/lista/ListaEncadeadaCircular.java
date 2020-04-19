@@ -15,14 +15,16 @@ public class ListaEncadeadaCircular<T extends Comparable<T>> implements Lista<T>
         Node<T> novoPrimeiro = new Node<>(info);
         if (primeiro != null) {
             novoPrimeiro.prox = primeiro;
-            ultimo().prox = novoPrimeiro;
+            getUltimo().prox = novoPrimeiro;
         } else {
             novoPrimeiro.prox = novoPrimeiro;
         }
         primeiro = novoPrimeiro;
     }
 
-    private Node<T> ultimo() {
+
+    @Override
+    public Node<T> getUltimo() {
         Node<T> n = primeiro;
         while (!isUltimo(n)) {
             n = n.prox;
@@ -50,7 +52,7 @@ public class ListaEncadeadaCircular<T extends Comparable<T>> implements Lista<T>
             return;
         }
 
-        Node<T> ultimoAtual = ultimo();
+        Node<T> ultimoAtual = getUltimo();
 
         ultimoAtual.prox = novoUltimo;
         novoUltimo.prox = primeiro;
@@ -84,7 +86,7 @@ public class ListaEncadeadaCircular<T extends Comparable<T>> implements Lista<T>
     }
 
     @Override
-    public String imprime() {
+    public String toString() {
         StringBuilder builder = new StringBuilder();
 
         for (T n : this) {
@@ -149,4 +151,10 @@ public class ListaEncadeadaCircular<T extends Comparable<T>> implements Lista<T>
             }
         };
     }
+
+    @Override
+    public Node<T> getPrimeiro() {
+        return primeiro;
+    }
+
 }

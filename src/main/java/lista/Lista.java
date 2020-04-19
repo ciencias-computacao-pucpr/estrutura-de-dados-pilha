@@ -11,13 +11,17 @@ public interface Lista<T extends Comparable<T>> {
 
     void insereOrdenado(T info);
 
-    String imprime();
+    String toString();
 
     Node<T> valorEm(int pos);
 
     Node<T> removePrimeiro();
 
     Node<T> removeUltimo();
+
+    Node<T> getPrimeiro();
+
+    Node<T> getUltimo();
 
     Node<T> remove(Node<T> node);
 }

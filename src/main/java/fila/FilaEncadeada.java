@@ -25,11 +25,19 @@ public class FilaEncadeada<T extends Comparable<T>> implements Fila<T> {
 
     @Override
     public T remove() {
+        Node<T> node = lista.removePrimeiro();
+        if (node != null)
+            return node.getInfo();
         return null;
     }
 
     @Override
     public boolean vazia() {
         return lista.vazia();
+    }
+
+    @Override
+    public String toString() {
+        return lista.toString();
     }
 }

@@ -1,44 +1,13 @@
 package pilha;
 
-import java.util.Optional;
+public interface Pilha<T> {
+    T topo();
 
-public class Pilha<T> {
-    private T[] elementos;
-    private int topo = -1;
+    boolean vazia();
 
-    public Pilha(int tamanho) {
-        this.elementos = (T[]) new Object[tamanho];
-    }
+    boolean cheia();
 
-    public T topo() {
-        if (topo < 0 || topo >= elementos.length)
-            return null;
-        return elementos[topo];
-    }
+    void empilha(T elemento);
 
-    public boolean vazia() {
-        return topo == -1;
-    }
-
-    public boolean cheia() {
-        return topo == elementos.length - 1;
-    }
-
-    public void empilha(T elemento) {
-        if (cheia()) throw new PilhaCheiaException();
-
-        elementos[++topo] = elemento;
-    }
-
-    public T desempilha() {
-        if (vazia()) throw new PilhaVaziaException();
-
-        return elementos[topo--];
-    }
-
-    public static class PilhaVaziaException extends RuntimeException {
-    }
-
-    public static class PilhaCheiaException extends RuntimeException {
-    }
+    T desempilha();
 }

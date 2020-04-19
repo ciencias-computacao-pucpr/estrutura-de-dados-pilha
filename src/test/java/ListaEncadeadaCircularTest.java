@@ -1,5 +1,4 @@
 import lista.Lista;
-import lista.ListaEncadeada;
 import lista.ListaEncadeadaCircular;
 import lista.Node;
 import org.junit.jupiter.api.Assertions;
@@ -33,7 +32,7 @@ public class ListaEncadeadaCircularTest {
         lista.insereUltimo(10);
         lista.insereUltimo(21);
 
-        Assertions.assertEquals("10, 21",lista.imprime());
+        Assertions.assertEquals("10, 21",lista.toString());
     }
 
     @Test
@@ -59,14 +58,14 @@ public class ListaEncadeadaCircularTest {
 
         lista.insereDepois(valor0, 30);
 
-        Assertions.assertEquals("10, 30, 21",lista.imprime());
+        Assertions.assertEquals("10, 30, 21",lista.toString());
     }
 
     @Test
     public void adicionarUltimoEmListaVazia() {
         lista.insereUltimo(30);
 
-        Assertions.assertEquals("30",lista.imprime());
+        Assertions.assertEquals("30",lista.toString());
     }
     @Test
     public void adicionarUltimoEmListaPopulada() {
@@ -75,14 +74,14 @@ public class ListaEncadeadaCircularTest {
 
         lista.insereUltimo(30);
 
-        Assertions.assertEquals("10, 21, 30",lista.imprime());
+        Assertions.assertEquals("10, 21, 30",lista.toString());
     }
 
     @Test
     public void adicionarPrimeirEmListaVazia() {
         lista.inserePrimeiro(30);
 
-        Assertions.assertEquals("30",lista.imprime());
+        Assertions.assertEquals("30",lista.toString());
     }
     @Test
     public void adicionarPrimeiroEmListaPopulada() {
@@ -91,14 +90,14 @@ public class ListaEncadeadaCircularTest {
 
         lista.inserePrimeiro(30);
 
-        Assertions.assertEquals("30, 10, 21",lista.imprime());
+        Assertions.assertEquals("30, 10, 21",lista.toString());
     }
 
     @Test
     public void adicionarOrdenadoEmListaVazia() {
         lista.insereOrdenado(30);
 
-        Assertions.assertEquals("30",lista.imprime());
+        Assertions.assertEquals("30",lista.toString());
     }
     @Test
     public void adicionarOrdenadoEmListaPopulada() {
@@ -107,13 +106,13 @@ public class ListaEncadeadaCircularTest {
 
         lista.insereOrdenado(15);
 
-        Assertions.assertEquals("10, 15, 21",lista.imprime());
+        Assertions.assertEquals("10, 15, 21",lista.toString());
 
         lista.insereOrdenado(1);
-        Assertions.assertEquals("1, 10, 15, 21",lista.imprime());
+        Assertions.assertEquals("1, 10, 15, 21",lista.toString());
 
         lista.insereOrdenado(40);
-        Assertions.assertEquals("1, 10, 15, 21, 40",lista.imprime());
+        Assertions.assertEquals("1, 10, 15, 21, 40",lista.toString());
     }
 
 }

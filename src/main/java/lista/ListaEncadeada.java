@@ -70,7 +70,7 @@ public class ListaEncadeada<T extends Comparable<T>> implements Lista<T> {
         }
     }
     @Override
-    public String imprime() {
+    public String toString() {
         StringBuilder builder = new StringBuilder();
         Node<T> n = primeiro;
 
@@ -148,5 +148,18 @@ public class ListaEncadeada<T extends Comparable<T>> implements Lista<T> {
             }
         }
         return null;
+    }
+
+    @Override
+    public Node<T> getPrimeiro() {
+        return primeiro;
+    }
+
+    @Override
+    public Node<T> getUltimo() {
+        Node<T> node= primeiro;
+        while (node.prox != null)
+            node = node.prox;
+        return node;
     }
 }
