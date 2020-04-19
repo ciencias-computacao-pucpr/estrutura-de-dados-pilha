@@ -1,30 +1,34 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pilha.Pilha;
+import pilha.PilhaEncadeada;
+import pilha.PilhaEstatica;
+import pilha.exception.PilhaCheiaException;
+import pilha.exception.PilhaVaziaException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PilhaTest {
+class PilhaEncadeadaTest {
+    Pilha<String> pilha;
+    @BeforeEach
+    public void setup() {
+        pilha = new PilhaEncadeada<String>();
+    }
 
     @Test
     void empilhando1NumeroEleDesempilha() {
-        Pilha<String> pilha = new Pilha<>(1);
-
         pilha.empilha("a");
         assertEquals("a",pilha.desempilha());
     }
 
     @Test
     void chamandoTopoParaUmaPilhaVaziaNaoDeveDarErro() {
-        Pilha<String> pilha = new Pilha<>(1);
-
         Assertions.assertDoesNotThrow(pilha::topo);
     }
 
     @Test
     void empilhando2NumeroEleDesempilhaDoUltimoParaOPrimeiro() {
-        Pilha<String> pilha = new Pilha<>(2);
-
         pilha.empilha("a");
         pilha.empilha("b");
         assertEquals("b",pilha.desempilha());
@@ -32,22 +36,9 @@ class PilhaTest {
     }
 
     @Test
-    void empilharMaisQueOTamanhoMaximoDisparaExcecao() {
-
-        Assertions.assertThrows(Pilha.PilhaCheiaException.class, () -> {
-            Pilha<String> pilha = new Pilha<>(1);
-            pilha.empilha("a");
-            pilha.empilha("a");
-            pilha.empilha("a");
-        });
-
-    }
-
-    @Test
     void desempilharEmUmaPilhaVaziaDisparaExcecao() {
 
-        Assertions.assertThrows(Pilha.PilhaVaziaException.class, () -> {
-            Pilha pilha = new Pilha(0);
+        Assertions.assertThrows(PilhaVaziaException.class, () -> {
             pilha.desempilha();
         });
 

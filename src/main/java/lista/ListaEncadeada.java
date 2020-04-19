@@ -49,7 +49,7 @@ public class ListaEncadeada<T extends Comparable<T>> implements Lista<T> {
         Node<T> valor = new Node<>(info);
 
         if (primeiro == null) {
-            primeiro = valor;
+            inserePrimeiro(info);
             return;
         }
 
@@ -70,7 +70,7 @@ public class ListaEncadeada<T extends Comparable<T>> implements Lista<T> {
         }
     }
     @Override
-    public String imprime() {
+    public String toString() {
         StringBuilder builder = new StringBuilder();
         Node<T> n = primeiro;
 
@@ -99,4 +99,67 @@ public class ListaEncadeada<T extends Comparable<T>> implements Lista<T> {
         return n;
     }
 
+    @Override
+    public Node<T> removePrimeiro() {
+        if (primeiro == null)
+            return null;
+
+        Node<T> nodeARemover = primeiro;
+        Node<T> novoPrimeiro = primeiro.prox;
+        nodeARemover.prox = null;
+        primeiro = novoPrimeiro;
+        return nodeARemover;
+    }
+
+    @Override
+    public Node<T> removeUltimo() {
+        Node<T> node = this.primeiro;
+        if (node == null)
+            return null;
+
+        if (node.prox == null)
+            removePrimeiro();
+
+        Node<T> penultimo = node;
+        node = node.prox;
+        while (node.prox != null) {
+            penultimo = node;
+            node = node.prox;
+        }
+
+        penultimo.prox = null;
+        return node;
+    }
+
+    @Override
+    public Node<T> remove(Node<T> nodeARemover) {
+        if (primeiro == null)
+            return null;
+
+        if (primeiro == nodeARemover) {
+            return removePrimeiro();
+        }
+
+        for (Node<T> n = primeiro; n.prox != null; n = n.prox) {
+            if (n.prox == nodeARemover) {
+                n.prox = nodeARemover.prox;
+                nodeARemover.prox = null;
+                return nodeARemover;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Node<T> getPrimeiro() {
+        return primeiro;
+    }
+
+    @Override
+    public Node<T> getUltimo() {
+        Node<T> node= primeiro;
+        while (node.prox != null)
+            node = node.prox;
+        return node;
+    }
 }

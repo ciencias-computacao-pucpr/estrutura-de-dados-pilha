@@ -2,7 +2,7 @@ package pilha;
 
 public class Validador {
     private final String expressao;
-    private Pilha<String> pilha;
+    private PilhaEstatica<String> pilha;
     private boolean paresCompletos;
 
     public Validador(String expressao) {
@@ -16,7 +16,7 @@ public class Validador {
 
         paresCompletos = (t % 2 == 0);
 
-        pilha = new Pilha<>(t);
+        pilha = new PilhaEstatica<>(t);
     }
 
     public boolean isValido() {
